@@ -1,4 +1,3 @@
-import { FC, ReactNode, useEffect } from "react";
 import { redirect } from "react-router-dom";
 import { AuthCheckEndpoint, AuthLoginEndpoint, AuthLogoutEndpoint, AuthLoginCallbackEndpoint } from "../../config/endpoints";
 

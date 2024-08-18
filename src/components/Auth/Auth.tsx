@@ -1,5 +1,5 @@
 import { createContext, Dispatch, FC, ReactNode, SetStateAction, useContext, useEffect, useState } from "react";
-import { useErrorContext } from "../Core/Error";
+//import { useErrorContext } from "../Core/Error";
 import { checkAuthenticated } from "./Login";
 
 
@@ -14,15 +14,16 @@ export const AuthContextProvider: FC<{
     children?: ReactNode,
 }> = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-    const { setError } = useErrorContext();
+    //const { setError } = useErrorContext();
 
     useEffect(() => {
         checkAuthenticated().then(() => {
             setIsAuthenticated(true)
         }).catch((err) => {
             setIsAuthenticated(false)
-            setError(`${err}`)
+            //setError(`${err}`)
         })
+        // eslint-disable-next-line
     }, [])
 
     return (

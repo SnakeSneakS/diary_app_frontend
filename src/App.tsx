@@ -9,22 +9,42 @@ import LoginCallbackPage from './pages/Callback';
 import { LoginRequiredRoute } from './components/Auth/Route';
 import { UserProfilePage } from './pages/UserProfilePage';
 import { AuthContextProvider } from './components/Auth/Auth';
+import { FC, ReactNode } from 'react';
+
+const ProvidersComoponent: FC<{
+  children?: ReactNode,
+}> = ({ children }) => {
+  return (
+    <ComposeProviders
+      components={[
+        AuthContextProvider,
+        ErrorContextProvider,
+      ]}
+    >
+      {children}
+    </ComposeProviders>
+    /*
+     <div>
+       <AuthContextProvider>
+         <ErrorContextProvider>
+           {children}
+         </ErrorContextProvider>
+       </AuthContextProvider >
+     </div>
+     */
+  )
+}
 
 function App() {
   return (
     <div>
-      <ComposeProviders
-        components={[
-          AuthContextProvider,
-          ErrorContextProvider,
-        ]}
-      >
-        <BrowserRouter
-        >
-          <div className="App">
+      <BrowserRouter >
+        <div className="App">
+          <ProvidersComoponent>
             <HeaderComponent></HeaderComponent>
             <Routes>
               <Route path="/" element={<HomePage />} />
+
               <Route path="/login" element={<LoginPage />} />
               <Route path="/callback" element={<LoginCallbackPage />} />
               <Route path="/private" element={<LoginRequiredRoute />}>
@@ -33,15 +53,14 @@ function App() {
                 </Route>
               </Route>
               <Route path="*" element={<h1>Not Found Page</h1>} />
+
             </Routes>
             <Routes></Routes>
             <ErrorDisplayComponent />
-          </div>
-        </BrowserRouter>
-      </ComposeProviders>
-
+          </ProvidersComoponent>
+        </div>
+      </BrowserRouter>
     </div>
-
   );
 }
 

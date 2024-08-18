@@ -1,8 +1,7 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useState } from 'react';
 import { Link, redirect } from 'react-router-dom';
 import { Menu as MenuIcon, Close as CloseIcon, SupervisedUserCircle, Logout } from '@mui/icons-material';
-import { Button } from '@mui/material';
-import { checkAuthenticated, login, logout } from './Auth/Login';
+import { logout } from './Auth/Login';
 import { useErrorContext } from './Core/Error';
 import { useAuthContext } from './Auth/Auth';
 
