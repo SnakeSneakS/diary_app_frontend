@@ -6,7 +6,10 @@ export type UserProfile = {
 }
 
 export const getUserProfile = async () => {
-    const response = await fetch(UserProfileEndpoint);
+    const response = await fetch(UserProfileEndpoint, {
+        method: "GET",
+        credentials: "include",
+    });
     const data: UserProfile = await response.json() as UserProfile;
     return data;
 }
